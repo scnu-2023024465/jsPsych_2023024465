@@ -1,0 +1,14 @@
+/* 背景为黑色，文字为白色 */
+body {
+    background-color: black;
+    color: white;
+};
+
+
+/* 弹性布局 */
+.stim{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 200px;
+};
