@@ -131,16 +131,33 @@ let study_timeline = {//创建一个学习阶段每一个trial的时间线，该
         return html
       },
       choices: ['f', 'j'],//仅运行被试按键f或j。
-      prompt:'该词是否能够描述你自己？<br>是按“F”，否按“J”'//出现在刺激词下方的提示词，提醒被试需要做什么任务，怎样按键；br标签换行。
+      prompt:'该词是否能够描述你自己？<br>是按“F”，否按“J”',//出现在刺激词下方的提示词，提醒被试需要做什么任务，怎样按键；br标签换行。
+      trial_duration:2000//被试不按键时，最多呈现2000毫秒就消失进入到下一个trial。
     }
   ],
   timeline_variables: [//创建学习阶段刺激词的list
-    {word1:'刺激词1'},//如果有更多的刺激，按格式添加即可，最后一个刺激词在括号后不要有逗号。
-    {word1:'刺激词2'},
-    {word1:'刺激词3'}
+    {word1:'友善'},//如果有更多的刺激，按格式添加即可，最后一个刺激词在括号后不要有逗号。
+    {word1:'爱国'},
+    {word1:'勇敢'},
+    {word1:'自强'},
+    {word1:'独立'},
+    {word1:'踏实'},
+    {word1:'豪爽'},
+    {word1:'谦逊'},
+    {word1:'无私'},
+    {word1:'公正'},
+    {word1:'贪婪'},
+    {word1:'无知'},
+    {word1:'无能'},
+    {word1:'吝啬'},
+    {word1:'虚荣'},
+    {word1:'迷信'},
+    {word1:'自私'},
+    {word1:'放纵'},
+    {word1:'顽固'},
+    {word1:'懈怠'}
   ],
   randomize_order: true,//设置刺激词呈现的顺序为随机。
-  trial_duration:'2000',//被试不按键时，最多呈现2000毫秒就消失进入到下一个trial。
   post_trial_gap: 1000//给每个“注视屏→刺激屏”后添加一个1000毫秒的空屏。
 };
 
@@ -160,20 +177,61 @@ let recog_timeline = {
         return html
       },
       choices: ['f', 'j'],
-      prompt:'该词是否能够描述你自己？<br>是按“F”，否按“J”'
+      prompt:'该词是否能够描述你自己？<br>是按“F”，否按“J”',
+      trial_duration:2000
     }
   ],
   timeline_variables: [
-    {word2:'刺激词1'},
-    {word2:'刺激词2'},
-    {word2:'刺激词3'},
-    {word2:'刺激词4'},
-    {word2:'刺激词5'},
-    {word2:'刺激词6'}
+    {word2:'友善',  correct_response: 'f'},//该刺激词在学习阶段出现过，应该按f。
+    {word2:'爱国',  correct_response: 'f'},
+    {word2:'勇敢',  correct_response: 'f'},
+    {word2:'自强',  correct_response: 'f'},
+    {word2:'独立',  correct_response: 'f'},
+    {word2:'踏实',  correct_response: 'f'},
+    {word2:'豪爽',  correct_response: 'f'},
+    {word2:'谦逊',  correct_response: 'f'},
+    {word2:'无私',  correct_response: 'f'},
+    {word2:'公正',  correct_response: 'f'},
+    {word2:'贪婪',  correct_response: 'f'},
+    {word2:'无知',  correct_response: 'f'},
+    {word2:'无能',  correct_response: 'f'},
+    {word2:'吝啬',  correct_response: 'f'},
+    {word2:'虚荣',  correct_response: 'f'},
+    {word2:'迷信',  correct_response: 'f'},
+    {word2:'自私',  correct_response: 'f'},
+    {word2:'放纵',  correct_response: 'f'},
+    {word2:'顽固',  correct_response: 'f'},
+    {word2:'懈怠',  correct_response: 'f'},
+    {word2:'易怒',  correct_response: 'j'},
+    {word2:'迟钝',  correct_response: 'j'},
+    {word2:'糊涂',  correct_response: 'j'},
+    {word2:'胆怯',  correct_response: 'j'},
+    {word2:'无趣',  correct_response: 'j'},
+    {word2:'被动',  correct_response: 'j'},
+    {word2:'忧郁',  correct_response: 'j'},
+    {word2:'焦虑',  correct_response: 'j'},
+    {word2:'任性',  correct_response: 'j'},
+    {word2:'好斗',  correct_response: 'j'},
+    {word2:'爱笑',  correct_response: 'j'},
+    {word2:'合群',  correct_response: 'j'},
+    {word2:'守法',  correct_response: 'j'},
+    {word2:'出众',  correct_response: 'j'},
+    {word2:'宽容',  correct_response: 'j'},
+    {word2:'严谨',  correct_response: 'j'},
+    {word2:'敬业',  correct_response: 'j'},
+    {word2:'节俭',  correct_response: 'j'},
+    {word2:'机灵',  correct_response: 'j'},
+    {word2:'勤勉',  correct_response: 'j'}
   ],
   randomize_order: true,
-  trial_duration:'2000',
-  post_trial_gap: 1000
+  post_trial_gap: 1000,
+  data: {
+    task: 'response',
+    correct_response: jsPsych.timelineVariable('correct_response')
+  },
+on_finish: function(data){
+    data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_response);
+  }//从data开始到这里都是在结果文件里标识出被试的按键反应是否正确。
 };
 
 
