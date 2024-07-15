@@ -91,9 +91,9 @@
 <p style="text-indent: 2em;">为了方便后续的修改，我们要做的第一步就是将样式写入CSS文件、实验试次写入JS文件，再从外部引入HTML文件中，避免HTML文件内容过于杂乱。</p>
 
 - 在Vscode中创建SRET.html、main.js、main.css文件。
-  ![图片说明](.\1.png)![图片说明](.\2.png)
+  ![图片说明](1.png)![图片说明](2.png)
 - 在html文件中，输入html:5回车搭建HTML基础框架。
-  ![图片说明](.\3.png)
+  ![图片说明](3.png)
 - 在html文件中，设定一些需要用到的插件，并引入刚刚创建的js文件与css文件。需要用到的插件可在jsPsych官网中查找引入方法与使用方法。引入js文件时记得添加“defer”属性。
 ```
 <!DOCTYPE html>
