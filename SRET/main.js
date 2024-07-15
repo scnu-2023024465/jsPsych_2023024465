@@ -177,7 +177,7 @@ let recog_timeline = {
         return html
       },
       choices: ['f', 'j'],
-      prompt:'该词是否能够描述你自己？<br>是按“F”，否按“J”',
+      prompt:'该词是否在先前的学习阶段出现过？<br>是按“F”，否按“J”',
       trial_duration:2000
     }
   ],
